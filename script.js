@@ -1,3 +1,6 @@
+
+
+
 function getComputerChoice() {
     let randInt = (Math.floor(3 * Math.random()) + 1);
     switch (randInt) {
@@ -13,14 +16,18 @@ function getComputerChoice() {
 }
 
 
-let getUserChoice = () => prompt("Rock, Paper Scissors, shoot!");
 
+
+let userChoice;
 let humanScore = 0;
 let computerScore = 0;
 
 
+
 function playRound(humanChoice, computerChoice) {
+
     humanChoice = humanChoice.toLowerCase();
+
     console.log(humanChoice);
     console.log(computerChoice);
     if (humanChoice === computerChoice) {
@@ -39,15 +46,31 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-function playGame(callback) {
-    for (let i = 1; i <= 5; i++) {
-        callback(getUserChoice(), getComputerChoice());
+
+
+
+
+
+
+const btns = document.querySelector('.buttons');
+
+btns.addEventListener('click', (event) => {
+    userChoice = event.target.id;
+    playRound(userChoice, getComputerChoice());
+    if (humanScore === 5 || computerScore === 5) {
+        humanScore > computerScore ? console.log("Human Won!") : humanScore = computerScore ? console.log("It's a Tie!") : console.log("Computer Won!");
+        humanScore = 0;
+        computerScore = 0;
     }
-    humanScore > computerScore ? console.log("Human Won!") : humanScore = computerScore ? console.log("It's a Tie!") : console.log("Computer Won!");
-}
+})
 
 
-playGame(playRound);
+
+
+
+
+
+
 
 
 
